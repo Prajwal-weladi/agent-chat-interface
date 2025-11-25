@@ -132,7 +132,10 @@ async function processQuery(
 
 ${toolContext ? `You have retrieved the following data for the current query:\n${toolContext}\n\nUse this data to answer the user's question accurately.` : ''}`
     },
-    ...conversationHistory,
+    ...conversationHistory.map(msg => ({
+      role: msg.role,
+      content: msg.content
+    })),
     {
       role: "user",
       content: query
