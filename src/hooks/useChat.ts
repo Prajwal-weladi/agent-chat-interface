@@ -4,6 +4,8 @@ import { useToast } from "@/hooks/use-toast";
 interface Message {
   role: "user" | "assistant";
   content: string;
+  fileUrl?: string;
+  fileName?: string;
 }
 
 export const useChat = (agentInstructions: string) => {
@@ -12,8 +14,8 @@ export const useChat = (agentInstructions: string) => {
   const abortControllerRef = useRef<AbortController | null>(null);
   const { toast } = useToast();
 
-  const sendMessage = useCallback(async (content: string) => {
-    const userMessage: Message = { role: "user", content };
+  const sendMessage = useCallback(async (content: string, fileUrl?: string, fileName?: string) => {
+    const userMessage: Message = { role: "user", content, fileUrl, fileName };
     setMessages((prev) => [...prev, userMessage]);
     setIsLoading(true);
 
