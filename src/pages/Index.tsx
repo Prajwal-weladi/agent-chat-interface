@@ -134,6 +134,8 @@ const Index = () => {
                     message.role === "assistant" &&
                     isLoading
                   }
+                  fileUrl={message.fileUrl}
+                  fileName={message.fileName}
                 />
               ))}
             </div>
